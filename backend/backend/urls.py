@@ -19,7 +19,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),  # Админка
-    path('api/', include('objects.urls')),  # Подключение маршрутов приложения
+    path('', include('objects.urls')),  # Подключение маршрутов приложения
+    path('', include('pollutants.urls')),  # Подключение маршрутов приложения
 ]
 
 

@@ -16,6 +16,7 @@ class PollutantsViewSet(ModelViewSet):
 
     ordering_fields = ['name', 'enormity_mass_flow', 'permissible_emissions', 'dangerous_emissions']
 
+
 class CalculationsViewSet(ModelViewSet):
     queryset = Calculations.objects.all()
     serializer_class = CalculationsSerializer
@@ -23,6 +24,6 @@ class CalculationsViewSet(ModelViewSet):
 
     filterset_fields = ['total_emissions', 'date', 'pollutant', 'company']
 
-    filterset_fields = ['total_emissions', 'date', 'pollutant', 'company']
+    search_fields = ['total_emissions', 'date', 'pollutant', 'company']
 
-    filterset_fields = ['total_emissions', 'date', 'pollutant', 'company']
+    ordering_fields = ['total_emissions', 'date', 'pollutant', 'company']
