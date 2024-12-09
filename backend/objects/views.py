@@ -10,11 +10,8 @@ class ObjectsViewSet(ModelViewSet):
     serializer_class = ObjectsSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
 
-    # Позволяет фильтровать по любому полю
     filterset_fields = ['name', 'head', 'address', 'economic_activity', 'ownership']
 
-    # Позволяет искать по конкретным полям
     search_fields = ['name', 'head', 'address', 'economic_activity', 'ownership']
 
-    # Позволяет сортировать по любому полю
     ordering_fields = ['name', 'head', 'address', 'economic_activity', 'ownership']
