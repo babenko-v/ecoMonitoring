@@ -18,3 +18,12 @@ html, body {
 .cursor-pointer{
     cursor: pointer;
 }
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 0;
+}
+.dark > th {
+    background-color: #313131 !important;
+    color: white !important;
+}

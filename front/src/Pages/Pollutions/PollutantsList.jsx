@@ -1,63 +1,60 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Modal from "../../Components/UI/Modal/Modal";
-import ObjectUpdateForm from "../../Components/Objects/UpdateForm/ObjectUpdateForm";
-import ObjectFilter from "../../Components/Objects/ObjectFilter/ObjectFilter";
+import PollutantUpdateForm from "../../Components/Pollutants/UpdateForm/PollutantUpdateForm";
 import PollutantPostForm from "../../Components/Pollutants/PostForm/PollutantPostForm";
-import ObjectPostForm from "../../Components/Objects/PostForm/ObjectPostForm";
+import PollutantFilter from "../../Components/Pollutants/PollutantsFilter/PollutantsFilter";
 
-const ObjectsList = () => {
-    const [objects, setObjects] = useState([]);
+const PollutantsList = () => {
+    const [pollutants, setPollutants] = useState([]);
     const [modal, setModal] = useState(false);
     const [updateModal, setUpdateModal] = useState(false);
-    const [editingObject, setEditingObject] = useState(null);
+    const [editingPollutant, setEditingPollutant] = useState(null);
 
-    const fetchObjects = async () => {
+    const fetchPollutants = async () => {
         try {
-            const res = await axios.get("/objects/");
-            setObjects(res.data);
+            const res = await axios.get("/pollutants/");
+            setPollutants(res.data);
         } catch (err) {
             console.error(err);
         }
     };
 
-    const deleteObject = async (id) => {
+    const deletePollutant = async (id) => {
         try {
-            await axios.delete(`/objects/${id}/`);
-            fetchObjects();
+            await axios.delete(`/pollutants/${id}/`);
+            fetchPollutants();
         } catch (err) {
             console.error(err);
         }
     };
 
     useEffect(() => {
-        fetchObjects();
+        fetchPollutants();
     }, []);
 
     return (
         <div>
-            <ObjectFilter fetch={fetchObjects}/>
+            <PollutantFilter fetch={fetchPollutants}/>
             <table className="table">
                 <thead>
                 <tr className="dark">
                     <th>#</th>
                     <th>Name</th>
-                    <th>Head</th>
-                    <th>Address</th>
+                    <th>Dangerous Emissions</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                {objects.map((obj, index) => (
-                    <tr key={obj.id}>
+                {pollutants.map((pollutant, index) => (
+                    <tr key={pollutant.id}>
                         <td>{index + 1}</td>
-                        <td>{obj.name}</td>
-                        <td>{obj.head}</td>
-                        <td>{obj.address}</td>
+                        <td>{pollutant.name}</td>
+                        <td>{pollutant.dangerous_emissions}</td>
                         <td>
                             <button
                                 onClick={() => {
-                                    setEditingObject(obj);
+                                    setEditingPollutant(pollutant);
                                     setUpdateModal(true);
                                 }}
                                 className="btn btn-warning btn-sm m-2"
@@ -65,7 +62,7 @@ const ObjectsList = () => {
                                 Update
                             </button>
                             <button
-                                onClick={() => deleteObject(obj.id)}
+                                onClick={() => deletePollutant(pollutant.id)}
                                 className="btn btn-danger btn-sm m-2"
                             >
                                 Delete
@@ -80,31 +77,30 @@ const ObjectsList = () => {
                     type="button"
                     className="btn btn-primary m-2"
                     onClick={() => {
-                        setEditingObject(null);
+                        setEditingPollutant(null);
                         setModal(true);
                     }}
                 >
-                    Add Object
+                    Add Pollutant
                 </button>
             </div>
-
             <Modal visible={updateModal} setVisible={setUpdateModal}>
-                <ObjectUpdateForm
-                    initialData={editingObject}
+                <PollutantUpdateForm
+                    initialData={editingPollutant}
                     onSubmit={() => {
                         setUpdateModal(false);
-                        fetchObjects();
+                        fetchPollutants();
                     }}
                 />
             </Modal>
             <Modal visible={modal} setVisible={setModal}>
-                <ObjectPostForm onSubmit={() => {
+                <PollutantPostForm onSubmit={() => {
                     setModal(false);
-                    fetchObjects();
+                    fetchPollutants();
                 }} />
             </Modal>
         </div>
     );
 };
 
-export default ObjectsList;
+export default PollutantsList;
