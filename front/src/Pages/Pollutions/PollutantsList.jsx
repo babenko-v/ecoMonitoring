@@ -11,10 +11,19 @@ const PollutantsList = () => {
     const [updateModal, setUpdateModal] = useState(false);
     const [editingPollutant, setEditingPollutant] = useState(null);
 
-    const fetchPollutants = async () => {
+    const fetchPollutants = async ({ filterBy = '', filterValue = '', sortBy = '', sortOrder = '' } = {}) => {
+        const queryParams = new URLSearchParams();
+
+        if (filterBy && filterValue) {
+            queryParams.append(filterBy, filterValue);
+        }
+        if (sortBy) {
+            const order = sortOrder === 'desc' ? `-${sortBy}` : sortBy;
+            queryParams.append('ordering', order);
+        }
         try {
-            const res = await axios.get("/pollutants/");
-            setPollutants(res.data);
+            const res = await axios.get(`/pollutants/?${queryParams.toString()}`);
+            setPollutants(res.data)
         } catch (err) {
             console.error(err);
         }

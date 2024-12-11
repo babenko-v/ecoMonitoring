@@ -53,6 +53,8 @@ const CalculationFilter = ({ fetch }) => {
                         <option value="">Sort By</option>
                         <option value="company">Company</option>
                         <option value="pollutant">Pollutant</option>
+                        <option value="total_emissions">Total Emission</option>
+                        <option value="date">Date</option>
                     </select>
                 </div>
                 <div className="col-md-2">
