@@ -5,12 +5,17 @@ import ObjectUpdateForm from "../../Components/Objects/UpdateForm/ObjectUpdateFo
 import ObjectFilter from "../../Components/Objects/ObjectFilter/ObjectFilter";
 import PollutantPostForm from "../../Components/Pollutants/PostForm/PollutantPostForm";
 import ObjectPostForm from "../../Components/Objects/PostForm/ObjectPostForm";
+import Filter from "../../Components/Filter/Filter";
+import Loader from "../../Components/UI/Loader/Loader";
 
 const ObjectsList = () => {
     const [objects, setObjects] = useState([]);
     const [modal, setModal] = useState(false);
     const [updateModal, setUpdateModal] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [editingObject, setEditingObject] = useState(null);
+    const filterOptions = ['name', 'head', 'address'];
+    const sortOptions = ['name', 'head', 'address'];
 
     const fetchObjects = async ({ filterBy = '', filterValue = '', sortBy = '', sortOrder = '' } = {}) => {
         const queryParams = new URLSearchParams();
@@ -23,10 +28,13 @@ const ObjectsList = () => {
             queryParams.append('ordering', order);
         }
         try {
+            setLoading(true)
             const res = await axios.get(`/objects/?${queryParams.toString()}`);
             setObjects(res.data)
         } catch (err) {
             console.error(err);
+        } finally {
+            setLoading(false)
         }
     };
 
@@ -44,46 +52,59 @@ const ObjectsList = () => {
     }, []);
 
     return (
-        <div>
-            <ObjectFilter fetch={fetchObjects}/>
-            <table className="table">
-                <thead>
+        <div className="container">
+            <Filter
+                fetch={fetchObjects}
+                filterOptions={filterOptions}
+                sortOptions={sortOptions}
+            />
+            <table className="table flex-table">
+                <thead className="flex-table">
                 <tr className="dark">
-                    <th>#</th>
+                    <th className="id">ID</th>
                     <th>Name</th>
                     <th>Head</th>
                     <th>Address</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
-                <tbody>
-                {objects.map((obj, index) => (
-                    <tr key={obj.id}>
-                        <td>{index + 1}</td>
-                        <td>{obj.name}</td>
-                        <td>{obj.head}</td>
-                        <td>{obj.address}</td>
-                        <td>
-                            <button
-                                onClick={() => {
-                                    setEditingObject(obj);
-                                    setUpdateModal(true);
-                                }}
-                                className="btn btn-warning btn-sm m-2"
-                            >
-                                Update
-                            </button>
-                            <button
-                                onClick={() => deleteObject(obj.id)}
-                                className="btn btn-danger btn-sm m-2"
-                            >
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
-                ))}
-                </tbody>
+
+                {!loading &&
+                    <tbody>
+                    {objects.map((obj, index) => (
+                        <tr key={obj.id}>
+                            <td>{index + 1}</td>
+                            <td>{obj.name}</td>
+                            <td>{obj.head}</td>
+                            <td>{obj.address}</td>
+                            <td>
+                                <button
+                                    onClick={() => {
+                                        setEditingObject(obj);
+                                        setUpdateModal(true);
+                                    }}
+                                    className="btn btn-warning btn-sm m-2"
+                                >
+                                    Update
+                                </button>
+                                <button
+                                    onClick={() => deleteObject(obj.id)}
+                                    className="btn btn-danger btn-sm m-2"
+                                >
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                }
+
             </table>
+            {loading &&
+                <div className="loader-container">
+                    <Loader/>
+                </div>
+            }
             <div className="button-container">
                 <button
                     type="button"
@@ -92,6 +113,7 @@ const ObjectsList = () => {
                         setEditingObject(null);
                         setModal(true);
                     }}
+
                 >
                     Add Object
                 </button>

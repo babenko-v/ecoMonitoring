@@ -4,11 +4,17 @@ import Modal from "../../Components/UI/Modal/Modal";
 import CalculationPostForm from "../../Components/Calculatioons/PostForm/CalculationPostForm";
 import CalculationFilter from "../../Components/Calculatioons/CalculationFilter/CalculationFilter";
 import CalculationUpdateForm from "../../Components/Calculatioons/UpdateForm/CalculationUpdateForm";
+import Filter from "../../Components/Filter/Filter";
+import Loader from "../../Components/UI/Loader/Loader";
 const CalculationsList = () => {
     const [calculations, setCalculations] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [modal, setModal] = useState(false);
     const [updateModal, setUpdateModal] = useState(false);
     const [editingCalculation, setEditingCalculation] = useState(null);
+    const filterOptions = ['company', 'pollutant', 'total_emissions', 'date'];
+    const sortOptions = ['company', 'pollutant', 'total_emissions', 'date'];
+
 
     const fetchCalculations = async ({ filterBy = '', filterValue = '', sortBy = '', sortOrder = '' } = {}) => {
         const queryParams = new URLSearchParams();
@@ -21,10 +27,13 @@ const CalculationsList = () => {
             queryParams.append('ordering', order);
         }
         try {
+            setLoading(true)
             const res = await axios.get(`/calculations/?${queryParams.toString()}`);
             setCalculations(res.data)
         } catch (err) {
             console.error(err);
+        } finally {
+            setLoading(false)
         }
     };
 
@@ -42,12 +51,16 @@ const CalculationsList = () => {
     }, []);
 
     return (
-        <div>
-            <CalculationFilter fetch={fetchCalculations}/>
+        <div className="container">
+            <Filter
+                fetch={fetchCalculations}
+                filterOptions={filterOptions}
+                sortOptions={sortOptions}
+            />
             <table className="table">
                 <thead>
                 <tr className="dark">
-                    <th>#</th>
+                    <th className="id">ID</th>
                     <th>Company</th>
                     <th>Pollutant</th>
                     <th>Date</th>
@@ -55,35 +68,43 @@ const CalculationsList = () => {
                     <th>Actions</th>
                 </tr>
                 </thead>
-                <tbody>
-                {calculations.map((calc, index) => (
-                    <tr key={calc.id}>
-                        <th scope="row">{index + 1}</th>
-                        <td>{calc.company}</td>
-                        <td>{calc.pollutant}</td>
-                        <td>{calc.date}</td>
-                        <td>{calc.total_emissions}</td>
-                        <td>
-                            <button
-                                onClick={() => {
-                                    setEditingCalculation(calc);
-                                    setUpdateModal(true);
-                                }}
-                                className="btn btn-warning btn-sm m-2"
-                            >
-                                Update
-                            </button>
-                            <button
-                                onClick={() => deleteCalculation(calc.id)}
-                                className="btn btn-danger btn-sm m-2"
-                            >
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
-                ))}
-                </tbody>
+                {!loading &&
+                    <tbody>
+                    {calculations.map((calc, index) => (
+                        <tr key={calc.id}>
+                            <th scope="row">{index + 1}</th>
+                            <td>{calc.company}</td>
+                            <td>{calc.pollutant}</td>
+                            <td>{calc.date}</td>
+                            <td>{calc.total_emissions}</td>
+                            <td>
+                                <button
+                                    onClick={() => {
+                                        setEditingCalculation(calc);
+                                        setUpdateModal(true);
+                                    }}
+                                    className="btn btn-warning btn-sm m-2"
+                                >
+                                    Update
+                                </button>
+                                <button
+                                    onClick={() => deleteCalculation(calc.id)}
+                                    className="btn btn-danger btn-sm m-2"
+                                >
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                }
+
             </table>
+            {loading &&
+                <div className="loader-container">
+                    <Loader/>
+                </div>
+            }
             <div className="button-container">
                 <button
                     type="button"

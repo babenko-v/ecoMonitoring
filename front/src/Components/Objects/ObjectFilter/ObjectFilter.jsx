@@ -19,7 +19,6 @@ const ObjectFilter = ({ fetch }) => {
 
     return (
         <div className="p-3 bg-light rounded mb-3">
-            <h5>Object Filter</h5>
             <div className="row g-3">
                 <div className="col-md-4">
                     <select

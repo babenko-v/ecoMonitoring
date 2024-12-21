@@ -27,3 +27,35 @@ html, body {
     background-color: #313131 !important;
     color: white !important;
 }
+
+.table {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 8px 12px;
+    text-align: left;
+    border: 1px solid #b9b9b9;
+}
+
+.table thead th {
+    font-weight: bold;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 16px;
+    box-sizing: border-box;
+}
+.id{
+    width: 12%;
+}
+.loader-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
