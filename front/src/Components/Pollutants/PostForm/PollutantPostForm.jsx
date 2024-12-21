@@ -59,7 +59,7 @@ const PollutantPostForm = ({ onSubmit }) => {
             />
             <div className="button-container">
                 <button type="button" className="btn btn-success m-2" onClick={handleSubmit}>
-                    Save
+                    Зберегти
                 </button>
             </div>
         </div>

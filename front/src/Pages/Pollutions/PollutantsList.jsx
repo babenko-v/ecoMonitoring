@@ -12,8 +12,18 @@ const PollutantsList = () => {
     const [updateModal, setUpdateModal] = useState(false);
     const [loading, setLoading] = useState(true);
     const [editingPollutant, setEditingPollutant] = useState(null);
-    const filterOptions = ['name', 'dangerous_emissions', 'permissible_emissions'];
-    const sortOptions = ['name', 'dangerous_emissions', 'permissible_emissions'];
+
+    const filterOptions =
+        [
+            {value : 'name', name : 'Назва'},
+            {value : 'dangerous_emissions', name : 'Небезпечні викиди'},
+            {value : 'permissible_emissions', name : 'Допустимі викиди'},
+        ];
+    const sortOptions = [
+        {value : 'name', name : 'Назва'},
+        {value : 'dangerous_emissions', name : 'Небезпечні викиди'},
+        {value : 'permissible_emissions', name : 'Допустимі викиди'},
+    ];
 
     const fetchPollutants = async ({ filterBy = '', filterValue = '', sortBy = '', sortOrder = '' } = {}) => {
         const queryParams = new URLSearchParams();
@@ -60,9 +70,9 @@ const PollutantsList = () => {
                 <thead>
                 <tr className="dark">
                     <th className="id">ID</th>
-                    <th>Name</th>
-                    <th>Dangerous Emissions</th>
-                    <th>Actions</th>
+                    <th>Назва</th>
+                    <th>Небезпечні викиди</th>
+                    <th></th>
                 </tr>
                 </thead>
                 {!loading &&
@@ -80,13 +90,13 @@ const PollutantsList = () => {
                                     }}
                                     className="btn btn-warning btn-sm m-2"
                                 >
-                                    Update
+                                    Оновити
                                 </button>
                                 <button
                                     onClick={() => deletePollutant(pollutant.id)}
                                     className="btn btn-danger btn-sm m-2"
                                 >
-                                    Delete
+                                    Видалити
                                 </button>
                             </td>
                         </tr>
@@ -109,7 +119,7 @@ const PollutantsList = () => {
                         setModal(true);
                     }}
                 >
-                    Add Pollutant
+                    Додати забруднювач
                 </button>
             </div>
             <Modal visible={updateModal} setVisible={setUpdateModal}>

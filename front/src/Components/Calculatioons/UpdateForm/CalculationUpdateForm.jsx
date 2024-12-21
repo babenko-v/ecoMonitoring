@@ -27,9 +27,7 @@ const CalculationUpdateForm = ({ initialData, onSubmit }) => {
     const handleSubmit = async () => {
         try {
             if (initialData) {
-                await axios.put(`/calculations/${initialData.id}/`, calculation);
-            } else {
-                await axios.post("/calculations/", calculation);
+                await axios.patch(`/calculations/${initialData.id}/`, calculation);
             }
             if (onSubmit) onSubmit();
         } catch (err) {
@@ -69,7 +67,7 @@ const CalculationUpdateForm = ({ initialData, onSubmit }) => {
             />
             <div className="button-container">
                 <button type="button" className="btn btn-success m-2" onClick={handleSubmit}>
-                    {initialData ? "Update" : "Save"}
+                    Оновити
                 </button>
             </div>
         </div>

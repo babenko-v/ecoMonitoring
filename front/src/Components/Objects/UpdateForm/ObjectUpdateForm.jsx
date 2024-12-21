@@ -27,9 +27,7 @@ const ObjectUpdateForm = ({ initialData, onSubmit }) => {
     const handleSubmit = async () => {
         try {
             if (initialData) {
-                await axios.put(`/objects/${initialData.id}/`, object);
-            } else {
-                await axios.post("/objects/", object);
+                await axios.patch(`/objects/${initialData.id}/`, object);
             }
             if (onSubmit) onSubmit();
         } catch (err) {
@@ -76,7 +74,7 @@ const ObjectUpdateForm = ({ initialData, onSubmit }) => {
             />
             <div className="button-container">
                 <button type="button" className="btn btn-success m-2" onClick={handleSubmit}>
-                    {initialData ? "Update" : "Save"}
+                    Оновити
                 </button>
             </div>
         </div>

@@ -27,9 +27,7 @@ const PollutantUpdateForm = ({ initialData, onSubmit }) => {
     const handleSubmit = async () => {
         try {
             if (initialData) {
-                await axios.put(`/pollutants/${initialData.id}/`, pollutant);
-            } else {
-                await axios.post("/pollutants/", pollutant);
+                await axios.patch(`/pollutants/${initialData.id}/`, pollutant);
             }
             if (onSubmit) onSubmit();
         } catch (err) {
@@ -69,7 +67,7 @@ const PollutantUpdateForm = ({ initialData, onSubmit }) => {
             />
             <div className="button-container">
                 <button type="button" className="btn btn-success m-2" onClick={handleSubmit}>
-                    {initialData ? "Update" : "Save"}
+                    Оновити
                 </button>
             </div>
         </div>

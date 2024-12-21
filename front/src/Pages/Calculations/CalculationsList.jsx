@@ -5,15 +5,26 @@ import CalculationPostForm from "../../Components/Calculatioons/PostForm/Calcula
 import CalculationUpdateForm from "../../Components/Calculatioons/UpdateForm/CalculationUpdateForm";
 import Filter from "../../Components/Filter/Filter";
 import Loader from "../../Components/UI/Loader/Loader";
+
 const CalculationsList = () => {
     const [calculations, setCalculations] = useState([]);
     const [loading, setLoading] = useState(true);
     const [modal, setModal] = useState(false);
     const [updateModal, setUpdateModal] = useState(false);
     const [editingCalculation, setEditingCalculation] = useState(null);
-    const filterOptions = ['company', 'pollutant', 'total_emissions', 'date'];
-    const sortOptions = ['company', 'pollutant', 'total_emissions', 'date'];
-
+    const filterOptions =
+        [
+            {value : 'company', name : 'Компанія'},
+            {value : 'pollutant', name : 'Забруднюючі речовини'},
+            {value : 'total_emissions', name : 'Загальний обсяг викидів'},
+            {value : 'date', name : 'Дата'},
+        ];
+    const sortOptions =  [
+        {value : 'company', name : 'Компанія'},
+        {value : 'pollutant', name : 'Забруднюючі речовини'},
+        {value : 'total_emissions', name : 'Загальний обсяг викидів'},
+        {value : 'date', name : 'Дата'},
+    ];
 
     const fetchCalculations = async ({ filterBy = '', filterValue = '', sortBy = '', sortOrder = '' } = {}) => {
         const queryParams = new URLSearchParams();
@@ -60,11 +71,11 @@ const CalculationsList = () => {
                 <thead>
                 <tr className="dark">
                     <th className="id">ID</th>
-                    <th>Company</th>
-                    <th>Pollutant</th>
-                    <th>Date</th>
-                    <th>Total Emissions</th>
-                    <th>Actions</th>
+                    <th>Компанія</th>
+                    <th>Забруднююча речовина</th>
+                    <th>Дата</th>
+                    <th>Загальний обсяг викидів</th>
+                    <th></th>
                 </tr>
                 </thead>
                 {!loading &&
@@ -84,13 +95,13 @@ const CalculationsList = () => {
                                     }}
                                     className="btn btn-warning btn-sm m-2"
                                 >
-                                    Update
+                                    Оновити
                                 </button>
                                 <button
                                     onClick={() => deleteCalculation(calc.id)}
                                     className="btn btn-danger btn-sm m-2"
                                 >
-                                    Delete
+                                    Видалити
                                 </button>
                             </td>
                         </tr>
@@ -112,7 +123,7 @@ const CalculationsList = () => {
                         setModal(true);
                     }}
                 >
-                    Add Calculation
+                    Додати розрахунок
                 </button>
             </div>
             <Modal visible={updateModal} setVisible={setUpdateModal}>
