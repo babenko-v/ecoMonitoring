@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Modal from "../../Components/UI/Modal/Modal";
 import ObjectUpdateForm from "../../Components/Objects/UpdateForm/ObjectUpdateForm";
-import ObjectFilter from "../../Components/Objects/ObjectFilter/ObjectFilter";
 import PollutantPostForm from "../../Components/Pollutants/PostForm/PollutantPostForm";
 import ObjectPostForm from "../../Components/Objects/PostForm/ObjectPostForm";
 import Filter from "../../Components/Filter/Filter";

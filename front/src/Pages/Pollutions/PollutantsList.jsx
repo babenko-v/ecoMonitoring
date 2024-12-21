@@ -3,7 +3,6 @@ import axios from "axios";
 import Modal from "../../Components/UI/Modal/Modal";
 import PollutantUpdateForm from "../../Components/Pollutants/UpdateForm/PollutantUpdateForm";
 import PollutantPostForm from "../../Components/Pollutants/PostForm/PollutantPostForm";
-import PollutantFilter from "../../Components/Pollutants/PollutantsFilter/PollutantsFilter";
 import Filter from "../../Components/Filter/Filter";
 import Loader from "../../Components/UI/Loader/Loader";
 
