@@ -4,8 +4,8 @@ import CustomInput from "../../UI/Input/CustomInput";
 
 const CalculationPostForm = ({ onSubmit }) => {
     const [calculation, setCalculation] = useState({
-        company: 0,
-        pollutant: 0,
+        company: null,
+        pollutant: null,
         date: "",
         total_emissions: ""
     });
@@ -29,33 +29,37 @@ const CalculationPostForm = ({ onSubmit }) => {
 
     return (
         <div>
+            <div>Компанія</div>
             <CustomInput
-                type="text"
+                type="number"
                 name="company"
                 value={calculation.company}
                 onChange={handleChange}
-                placeholder="Company"
+                placeholder="Компанія"
             />
+            <div>Забруднююча речовина</div>
             <CustomInput
-                type="text"
+                type="number"
                 name="pollutant"
                 value={calculation.pollutant}
                 onChange={handleChange}
-                placeholder="Pollutant"
+                placeholder="Забруднююча речовина"
             />
+            <div>Дата</div>
             <CustomInput
                 type="date"
                 name="date"
                 value={calculation.date}
                 onChange={handleChange}
-                placeholder="Date"
+                placeholder="Дата"
             />
+            <div>Загальний обсяг викидів</div>
             <CustomInput
                 type="number"
                 name="total_emissions"
                 value={calculation.total_emissions}
                 onChange={handleChange}
-                placeholder="Total Emissions"
+                placeholder="Загальний обсяг викидів"
             />
             <div className="button-container">
                 <button type="button" className="btn btn-success m-2" onClick={handleSubmit}>

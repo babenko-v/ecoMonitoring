@@ -18,14 +18,18 @@ const ObjectsList = () => {
             {value : 'name', name : 'Назва'},
             {value : 'head', name : 'Керівник'},
             {value : 'address', name : 'Адреса'},
+            {value : 'economic_activity', name : 'Економічна активність'},
+            {value : 'ownership', name : 'Форма власності'},
         ];
     const sortOptions = [
         {value : 'name', name : 'Назва'},
         {value : 'head', name : 'Керівник'},
         {value : 'address', name : 'Адреса'},
+        {value : 'economic_activity', name : 'Адреса'},
+        {value : 'ownership', name : 'Адреса'},
     ];
 
-    const fetchObjects = async ({ filterBy = '', filterValue = '', sortBy = '', sortOrder = '' } = {}) => {
+    const fetchObjects = async ({ filterBy = '', filterValue = '', sortBy = '', sortOrder = '' } ={}) => {
         const queryParams = new URLSearchParams();
 
         if (filterBy && filterValue) {
@@ -73,7 +77,9 @@ const ObjectsList = () => {
                     <th>Назва</th>
                     <th>Керівник</th>
                     <th>Адреса</th>
-                    <th></th>
+                    <th>Економічна активність</th>
+                    <th>Форма власності</th>
+                    <th>Дії</th>
                 </tr>
                 </thead>
 
@@ -85,6 +91,8 @@ const ObjectsList = () => {
                             <td>{obj.name}</td>
                             <td>{obj.head}</td>
                             <td>{obj.address}</td>
+                            <td>{obj.economic_activity}</td>
+                            <td>{obj.ownership}</td>
                             <td>
                                 <button
                                     onClick={() => {

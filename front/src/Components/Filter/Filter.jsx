@@ -21,6 +21,7 @@ const CalculationFilter = ({ fetch, filterOptions, sortOptions }) => {
         <div className="p-3 bg-light rounded mb-3">
             <div className="row g-3">
                 <div>
+                    <div>Фільтрування</div>
                     <div className="col-md-4">
                         <select
                             className="form-select m-2"
@@ -50,6 +51,7 @@ const CalculationFilter = ({ fetch, filterOptions, sortOptions }) => {
                 </div>
 
                 <div>
+                    <div>Сортування</div>
                     <div className="col-md-2 m-2">
                         <select
                             className="form-select"

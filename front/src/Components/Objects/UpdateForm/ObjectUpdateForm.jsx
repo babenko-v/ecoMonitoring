@@ -37,40 +37,45 @@ const ObjectUpdateForm = ({ initialData, onSubmit }) => {
 
     return (
         <div>
+            <div>Компанія</div>
             <CustomInput
                 type="text"
                 name="name"
                 value={object.name}
                 onChange={handleChange}
-                placeholder="Name"
+                placeholder="Компанія"
             />
+            <div>Керівник</div>
             <CustomInput
                 type="text"
                 name="head"
                 value={object.head}
                 onChange={handleChange}
-                placeholder="Head"
+                placeholder="Керівник"
             />
+            <div>Адреса</div>
             <CustomInput
                 type="text"
                 name="address"
                 value={object.address}
                 onChange={handleChange}
-                placeholder="Address"
+                placeholder="Адреса"
             />
+            <div>Економічна активність</div>
             <CustomInput
                 type="text"
                 name="economic_activity"
                 value={object.economic_activity}
                 onChange={handleChange}
-                placeholder="Economic Activity"
+                placeholder="Економічна активність"
             />
+            <div>Форма власності</div>
             <CustomInput
                 type="text"
                 name="ownership"
                 value={object.ownership}
                 onChange={handleChange}
-                placeholder="Ownership"
+                placeholder="Форма власності"
             />
             <div className="button-container">
                 <button type="button" className="btn btn-success m-2" onClick={handleSubmit}>

@@ -52,10 +52,13 @@ html, body {
     box-sizing: border-box;
 }
 .id{
-    width: 12%;
+    width: 4%;
 }
 .loader-container{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.container{
+    max-width: 85% !important;
 }

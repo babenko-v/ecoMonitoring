@@ -48,6 +48,7 @@ const PollutantsList = () => {
 
     const deletePollutant = async (id) => {
         try {
+            console.log(id)
             await axios.delete(`/pollutants/${id}/`);
             fetchPollutants();
         } catch (err) {
@@ -70,9 +71,11 @@ const PollutantsList = () => {
                 <thead>
                 <tr className="dark">
                     <th className="id">ID</th>
-                    <th>Назва</th>
+                    <th className="name">Назва</th>
                     <th>Небезпечні викиди</th>
-                    <th></th>
+                    <th>Допустимі викиди мг/м^3</th>
+                    <th>Величина массової витрати г/год</th>
+                    <th>Дії</th>
                 </tr>
                 </thead>
                 {!loading &&
@@ -82,6 +85,8 @@ const PollutantsList = () => {
                             <td>{index + 1}</td>
                             <td>{pollutant.name}</td>
                             <td>{pollutant.dangerous_emissions}</td>
+                            <td>{pollutant.permissible_emissions}</td>
+                            <td>{pollutant.enormity_mass_flow}</td>
                             <td>
                                 <button
                                     onClick={() => {

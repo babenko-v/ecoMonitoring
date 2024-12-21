@@ -75,7 +75,7 @@ const CalculationsList = () => {
                     <th>Забруднююча речовина</th>
                     <th>Дата</th>
                     <th>Загальний обсяг викидів</th>
-                    <th></th>
+                    <th>Дії</th>
                 </tr>
                 </thead>
                 {!loading &&
