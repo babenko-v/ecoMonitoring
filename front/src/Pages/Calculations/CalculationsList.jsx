@@ -70,6 +70,7 @@ const CalculationsList = () => {
             <table className="table">
                 <thead>
                 <tr className="dark">
+                    <th className="id">№</th>
                     <th className="id">ID</th>
                     <th>Компанія</th>
                     <th>Забруднююча речовина</th>
@@ -83,6 +84,7 @@ const CalculationsList = () => {
                     {calculations.map((calc, index) => (
                         <tr key={calc.id}>
                             <th scope="row">{index + 1}</th>
+                            <th>{calc.id}</th>
                             <td>{calc.company}</td>
                             <td>{calc.pollutant}</td>
                             <td>{calc.date}</td>

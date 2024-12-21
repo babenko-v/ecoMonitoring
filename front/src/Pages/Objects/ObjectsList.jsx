@@ -73,6 +73,7 @@ const ObjectsList = () => {
             <table className="table flex-table">
                 <thead className="flex-table">
                 <tr className="dark">
+                    <th className="id">№</th>
                     <th className="id">ID</th>
                     <th>Назва</th>
                     <th>Керівник</th>
@@ -87,7 +88,8 @@ const ObjectsList = () => {
                     <tbody>
                     {objects.map((obj, index) => (
                         <tr key={obj.id}>
-                            <td>{index + 1}</td>
+                            <th scope="row">{index + 1}</th>
+                            <td>{obj.id}</td>
                             <td>{obj.name}</td>
                             <td>{obj.head}</td>
                             <td>{obj.address}</td>

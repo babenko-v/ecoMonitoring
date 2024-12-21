@@ -70,6 +70,7 @@ const PollutantsList = () => {
             <table className="table">
                 <thead>
                 <tr className="dark">
+                    <th className="id">№</th>
                     <th className="id">ID</th>
                     <th className="name">Назва</th>
                     <th>Небезпечні викиди</th>
@@ -82,7 +83,8 @@ const PollutantsList = () => {
                     <tbody>
                     {pollutants.map((pollutant, index) => (
                         <tr key={pollutant.id}>
-                            <td>{index + 1}</td>
+                            <th scope="row">{index + 1}</th>
+                            <td>{pollutant.id}</td>
                             <td>{pollutant.name}</td>
                             <td>{pollutant.dangerous_emissions}</td>
                             <td>{pollutant.permissible_emissions}</td>

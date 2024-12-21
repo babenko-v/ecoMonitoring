@@ -4,14 +4,15 @@ import CustomInput from "../../UI/Input/CustomInput";
 
 const CalculationPostForm = ({ onSubmit }) => {
     const [calculation, setCalculation] = useState({
-        company: null,
-        pollutant: null,
+        company: "",
+        pollutant: "",
         date: "",
         total_emissions: ""
     });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+
         setCalculation((prevState) => ({
             ...prevState,
             [name]: value
@@ -20,6 +21,7 @@ const CalculationPostForm = ({ onSubmit }) => {
 
     const handleSubmit = async () => {
         try {
+            console.log(calculation)
             await axios.post("/calculations/", calculation);
             if (onSubmit) onSubmit();
         } catch (err) {
@@ -36,6 +38,7 @@ const CalculationPostForm = ({ onSubmit }) => {
                 value={calculation.company}
                 onChange={handleChange}
                 placeholder="Компанія"
+                min="0"
             />
             <div>Забруднююча речовина</div>
             <CustomInput
@@ -44,6 +47,7 @@ const CalculationPostForm = ({ onSubmit }) => {
                 value={calculation.pollutant}
                 onChange={handleChange}
                 placeholder="Забруднююча речовина"
+                min="0"
             />
             <div>Дата</div>
             <CustomInput

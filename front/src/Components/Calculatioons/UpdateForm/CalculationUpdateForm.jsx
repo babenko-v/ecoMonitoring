@@ -39,7 +39,7 @@ const CalculationUpdateForm = ({ initialData, onSubmit }) => {
         <div>
             <div>Компанія</div>
             <CustomInput
-                type="text"
+                type="number"
                 name="company"
                 value={calculation.company}
                 onChange={handleChange}
@@ -47,7 +47,7 @@ const CalculationUpdateForm = ({ initialData, onSubmit }) => {
             />
             <div>Забруднююча речовина</div>
             <CustomInput
-                type="text"
+                type="number"
                 name="pollutant"
                 value={calculation.pollutant}
                 onChange={handleChange}
