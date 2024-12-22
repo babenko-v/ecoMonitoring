@@ -70,12 +70,13 @@ const CalculationsList = () => {
             <table className="table">
                 <thead>
                 <tr className="dark">
+                    <th className="id">№</th>
                     <th className="id">ID</th>
                     <th>Компанія</th>
                     <th>Забруднююча речовина</th>
                     <th>Дата</th>
                     <th>Загальний обсяг викидів</th>
-                    <th></th>
+                    <th>Дії</th>
                 </tr>
                 </thead>
                 {!loading &&
@@ -83,6 +84,7 @@ const CalculationsList = () => {
                     {calculations.map((calc, index) => (
                         <tr key={calc.id}>
                             <th scope="row">{index + 1}</th>
+                            <td>{calc.id}</td>
                             <td>{calc.company}</td>
                             <td>{calc.pollutant}</td>
                             <td>{calc.date}</td>
