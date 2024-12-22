@@ -51,7 +51,7 @@ const CalculationPostForm = ({ onSubmit }) => {
             />
             <div>Дата</div>
             <CustomInput
-                type="date"
+                type="number"
                 name="date"
                 value={calculation.date}
                 onChange={handleChange}

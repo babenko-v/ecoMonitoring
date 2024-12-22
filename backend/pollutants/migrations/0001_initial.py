@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('total_emissions', models.FloatField()),
-                ('date', models.DateField()),
+                ('date', models.IntegerField()),
                 ('company', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='objects.objects')),
                 ('pollutant', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='pollutants.pollutants')),
             ],

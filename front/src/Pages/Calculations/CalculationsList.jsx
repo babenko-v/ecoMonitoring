@@ -84,7 +84,7 @@ const CalculationsList = () => {
                     {calculations.map((calc, index) => (
                         <tr key={calc.id}>
                             <th scope="row">{index + 1}</th>
-                            <th>{calc.id}</th>
+                            <td>{calc.id}</td>
                             <td>{calc.company}</td>
                             <td>{calc.pollutant}</td>
                             <td>{calc.date}</td>
