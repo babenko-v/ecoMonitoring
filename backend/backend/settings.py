@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     'objects',
     'pollutants',
+    'radio_creation',
 
     "rest_framework",
     'corsheaders',
