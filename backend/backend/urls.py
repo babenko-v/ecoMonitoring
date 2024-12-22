@@ -22,6 +22,7 @@ urlpatterns = [
     path('', include('objects.urls')),  # Подключение маршрутов приложения
     path('', include('pollutants.urls')),  # Подключение маршрутов приложения
     path('', include('radio_creation.urls')),
+    path('', include('temporary_place.urls')),
 ]
 
 

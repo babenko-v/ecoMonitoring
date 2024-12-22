@@ -13,5 +13,5 @@ class Temporary_place (models.Model):
 
 
     class Meta:
-        db_table = 'Radioactive_waste'
+        db_table = 'Temporary_place'
         ordering = ['total_tax', ]

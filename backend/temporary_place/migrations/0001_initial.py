@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="Radioactive_waste",
+            name="Temporary_place",
             fields=[
                 (
                     "id",
@@ -25,15 +25,9 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("on_electricity", models.FloatField(max_length=100)),
-                ("c1ns", models.FloatField(max_length=100)),
-                ("c2ns", models.FloatField(max_length=100)),
-                ("c1v", models.FloatField(max_length=100)),
-                ("c2v", models.FloatField(max_length=100)),
-                ("v1ns", models.FloatField(max_length=100)),
-                ("v2ns", models.FloatField(max_length=100)),
-                ("v1v", models.FloatField(max_length=100)),
-                ("v2v", models.FloatField(max_length=100)),
+                ("n", models.FloatField()),
+                ("v", models.FloatField()),
+                ("t", models.IntegerField()),
                 ("total_tax", models.FloatField(max_length=100)),
                 (
                     "company",
@@ -44,7 +38,7 @@ class Migration(migrations.Migration):
                 ),
             ],
             options={
-                "db_table": "Radioactive_waste",
+                "db_table": "Temporary_place",
                 "ordering": ["total_tax"],
             },
         ),

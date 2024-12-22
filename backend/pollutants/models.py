@@ -16,7 +16,7 @@ class Pollutants(models.Model):
 
 class Calculations(models.Model):
     total_emissions = models.FloatField()
-    date = models.DateField()
+    date = models.IntegerField()
 
     pollutant = models.ForeignKey(Pollutants, on_delete=models.PROTECT)
     company = models.ForeignKey(Objects, on_delete=models.PROTECT)
