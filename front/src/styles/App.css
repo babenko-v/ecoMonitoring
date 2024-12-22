@@ -8,7 +8,8 @@ a{
 }
 
 html, body {
-    background-color: white;
+    background: linear-gradient(to bottom right, #e0f7e9, #56947b) fixed;
+    background-size: cover;
     margin: 0;
     padding: 0;
     height: 100%;
@@ -61,4 +62,7 @@ html, body {
 }
 .container{
     max-width: 85% !important;
+}
+.table td, .table th {
+    text-align: center;
 }
