@@ -18,14 +18,18 @@ const ObjectsList = () => {
             {value : 'name', name : 'Назва'},
             {value : 'head', name : 'Керівник'},
             {value : 'address', name : 'Адреса'},
+            {value : 'economic_activity', name : 'Економічна активність'},
+            {value : 'ownership', name : 'Форма власності'},
         ];
     const sortOptions = [
         {value : 'name', name : 'Назва'},
         {value : 'head', name : 'Керівник'},
         {value : 'address', name : 'Адреса'},
+        {value : 'economic_activity', name : 'Адреса'},
+        {value : 'ownership', name : 'Адреса'},
     ];
 
-    const fetchObjects = async ({ filterBy = '', filterValue = '', sortBy = '', sortOrder = '' } = {}) => {
+    const fetchObjects = async ({ filterBy = '', filterValue = '', sortBy = '', sortOrder = '' } ={}) => {
         const queryParams = new URLSearchParams();
 
         if (filterBy && filterValue) {
@@ -69,11 +73,14 @@ const ObjectsList = () => {
             <table className="table flex-table">
                 <thead className="flex-table">
                 <tr className="dark">
+                    <th className="id">№</th>
                     <th className="id">ID</th>
                     <th>Назва</th>
                     <th>Керівник</th>
                     <th>Адреса</th>
-                    <th></th>
+                    <th>Економічна активність</th>
+                    <th>Форма власності</th>
+                    <th>Дії</th>
                 </tr>
                 </thead>
 
@@ -81,10 +88,13 @@ const ObjectsList = () => {
                     <tbody>
                     {objects.map((obj, index) => (
                         <tr key={obj.id}>
-                            <td>{index + 1}</td>
+                            <th scope="row">{index + 1}</th>
+                            <td>{obj.id}</td>
                             <td>{obj.name}</td>
                             <td>{obj.head}</td>
                             <td>{obj.address}</td>
+                            <td>{obj.economic_activity}</td>
+                            <td>{obj.ownership}</td>
                             <td>
                                 <button
                                     onClick={() => {

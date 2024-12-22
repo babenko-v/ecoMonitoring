@@ -37,33 +37,37 @@ const PollutantUpdateForm = ({ initialData, onSubmit }) => {
 
     return (
         <div>
+            <div>Назва</div>
             <CustomInput
                 type="text"
                 name="name"
                 value={pollutant.name}
                 onChange={handleChange}
-                placeholder="Name"
+                placeholder="Назва"
             />
+            <div>Небезпечні викиди</div>
             <CustomInput
                 type="number"
                 name="dangerous_emissions"
                 value={pollutant.dangerous_emissions}
                 onChange={handleChange}
-                placeholder="Dangerous Emissions"
+                placeholder="Небезпечні викиди"
             />
-            <CustomInput
-                type="number"
-                name="enormity_mass_flow"
-                value={pollutant.enormity_mass_flow}
-                onChange={handleChange}
-                placeholder="Enormity Mass Flow"
-            />
+            <div>Допустимі викиди</div>
             <CustomInput
                 type="number"
                 name="permissible_emissions"
                 value={pollutant.permissible_emissions}
                 onChange={handleChange}
-                placeholder="Permissible Emissions"
+                placeholder="Допустимі викиди"
+            />
+            <div>Величина масової витрати</div>
+            <CustomInput
+                type="number"
+                name="enormity_mass_flow"
+                value={pollutant.enormity_mass_flow}
+                onChange={handleChange}
+                placeholder="Величина масової витрати"
             />
             <div className="button-container">
                 <button type="button" className="btn btn-success m-2" onClick={handleSubmit}>
