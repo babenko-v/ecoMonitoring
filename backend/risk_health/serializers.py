@@ -25,7 +25,7 @@ class RishHealthrSerializer(serializers.ModelSerializer):
     )
     pollutant = Pollutanterializer(read_only=True)
     pollutant_id = serializers.PrimaryKeyRelatedField(
-        queryset=Pollutants.objects.all().exclude(type_of_pollutant="air"),
+        queryset=Pollutants.objects.all(),
         source='pollutant',
         write_only=True
     )

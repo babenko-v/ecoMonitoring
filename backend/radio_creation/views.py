@@ -1,8 +1,13 @@
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from .models import Radioactive_waste
 from .serializers import RadioactiveSerializer
+from objects.models import Objects
+from objects.serializers import ObjectsSerializer
+from pollutants.models import Pollutants
+from pollutants.serializers import PollutantsSerializer
 
 
 class RadioactiveWasteViewSet(ModelViewSet):
@@ -38,3 +43,18 @@ class RadioactiveWasteViewSet(ModelViewSet):
             * (2 * c2ns * v2ns + 50 * c2v * v2v)
         )
         serializer.save(total_tax=total_tax)
+
+    def list(self, request, *args, **kwargs):
+        response = super().list(request, *args, **kwargs)
+
+        pollutants = Pollutants.objects.all()
+        pollutants_serializer = PollutantsSerializer(pollutants, many=True)
+
+        companies = Objects.objects.all()
+        companies_serializer = ObjectsSerializer(companies, many=True)
+
+        return Response({
+            'radioactive_waste': response.data,
+            'pollutants': pollutants_serializer.data,
+            'objects': companies_serializer.data,
+        })

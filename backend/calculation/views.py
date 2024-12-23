@@ -44,7 +44,7 @@ class CalculationsWaterViewSet(ModelViewSet):
         return Response({
             'calculations': response.data,
             'pollutants': pollutants_serializer.data,
-            'companies': companies_serializer.data,
+            'objects': companies_serializer.data,
         })
 
 
@@ -86,7 +86,7 @@ class CalculationsAirViewSet(ModelViewSet):
         return Response({
             'calculations': response.data,
             'pollutants': pollutants_serializer.data,
-            'companies': companies_serializer.data,
+            'objects': companies_serializer.data,
         })
 
 

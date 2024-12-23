@@ -10,11 +10,12 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ("objects", "0001_initial"),
+        ("pollutants", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name="Radioactive_waste",
+            name="Risk_health",
             fields=[
                 (
                     "id",
@@ -25,16 +26,13 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("on_electricity", models.FloatField(max_length=100)),
-                ("c1ns", models.FloatField(max_length=100)),
-                ("c2ns", models.FloatField(max_length=100)),
-                ("c1v", models.FloatField(max_length=100)),
-                ("c2v", models.FloatField(max_length=100)),
-                ("v1ns", models.FloatField(max_length=100)),
-                ("v2ns", models.FloatField(max_length=100)),
-                ("v1v", models.FloatField(max_length=100)),
-                ("v2v", models.FloatField(max_length=100)),
-                ("total_tax", models.FloatField(max_length=100)),
+                ("concentration", models.FloatField()),
+                ("sf", models.FloatField()),
+                ("rfc", models.FloatField()),
+                ("date", models.IntegerField()),
+                ("hq", models.FloatField()),
+                ("ladd", models.FloatField()),
+                ("cr", models.FloatField()),
                 (
                     "company",
                     models.ForeignKey(
@@ -42,10 +40,17 @@ class Migration(migrations.Migration):
                         to="objects.objects",
                     ),
                 ),
+                (
+                    "pollutant",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="pollutants.pollutants",
+                    ),
+                ),
             ],
             options={
-                "db_table": "Radioactive_waste",
-                "ordering": ["total_tax"],
+                "db_table": "Rish_health",
+                "ordering": ["date"],
             },
         ),
     ]

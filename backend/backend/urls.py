@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('radio_creation.urls')),
     path('', include('temporary_place.urls')),
     path('', include('calculation.urls')),
+    path('', include('risk_health.urls')),
 ]
 
 
