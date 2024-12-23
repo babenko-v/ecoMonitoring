@@ -18,11 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),  # Админка
-    path('', include('objects.urls')),  # Подключение маршрутов приложения
-    path('', include('pollutants.urls')),  # Подключение маршрутов приложения
+    path('admin/', admin.site.urls),
+    path('', include('objects.urls')),
+    path('', include('pollutants.urls')),
     path('', include('radio_creation.urls')),
     path('', include('temporary_place.urls')),
+    path('', include('calculation.urls')),
 ]
 
 
