@@ -36,7 +36,7 @@ const CalculationUpdateForm = ({ initialData, onSubmit }) => {
     };
 
     return (
-        <div>
+        <div className="w-100">
             <div>Компанія</div>
             <CustomInput
                 type="number"
