@@ -3,7 +3,7 @@ import axios from "axios";
 import CustomInput from "../../UI/Input/CustomInput";
 import CalculationForm from "../From/CalculationForm";
 
-const CalculationPostForm = ({onSubmit, initialData, isWater}) => {
+const CalculationPostForm = ({onSubmit, initialData, isWater, objects, pollutants}) => {
     const [calculation, setCalculation] = useState({
         ratio_water: "1",
         company_id: '',
@@ -15,9 +15,6 @@ const CalculationPostForm = ({onSubmit, initialData, isWater}) => {
         k2 : ""
     });
 
-    const [objects, setObjects] = useState([]);
-    const [pollutants, setPollutants] = useState([]);
-
     useEffect(() => {
         if (initialData) {
             setCalculation((prev) => ({
@@ -26,26 +23,6 @@ const CalculationPostForm = ({onSubmit, initialData, isWater}) => {
             }));
         }
     }, [initialData]);
-
-
-    const fetchData = async () => {
-        try {
-            const [objectsResponse, pollutantsResponse] = await Promise.all([
-                axios.get("/objects/"),
-                axios.get("/pollutants/"),
-            ]);
-
-            setObjects(objectsResponse.data);
-            setPollutants(pollutantsResponse.data);
-        } catch (err) {
-            console.error("Ошибка при загрузке данных:", err);
-        }
-    };
-
-    useEffect(() => {
-
-        fetchData();
-    }, []);
 
     const handleChange = (e) => {
         const {name, value} = e.target;

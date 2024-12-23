@@ -21,6 +21,9 @@ const CalculationsList = () => {
         calculation_method: "false",
     });
 
+    const [objects, setObjects] = useState([]);
+    const [pollutants, setPollutants] = useState([]);
+
     const [isWater, setIsWater] = useState(false);
     const filterOptions =
         [
@@ -51,9 +54,14 @@ const CalculationsList = () => {
             if (isWater) {
                 const res = await axios.get(`/calculations_water/?${queryParams.toString()}`);
                 setCalculations(res.data.calculations)
+                setObjects(res.data.objects)
+                setPollutants(res.data.pollutants)
             } else {
                 const res = await axios.get(`/calculations_air/?${queryParams.toString()}`);
+                console.log(res.data)
                 setCalculations(res.data.calculations)
+                setObjects(res.data.objects)
+                setPollutants(res.data.pollutants)
             }
         } catch (err) {
             console.error(err);
@@ -187,26 +195,30 @@ const CalculationsList = () => {
                     <Loader/>
                 </div>
             }
-            <Modal visible={updateModal} setVisible={setUpdateModal}>
-                <CalculationUpdateForm
-                    initialData={calculationData}
-                    isWater={isWater}
-                    onSubmit={() => {
-                        setUpdateModal(false);
-                        fetchCalculations();
-                    }}
-                />
-            </Modal>
-            <Modal visible={modal} setVisible={setModal}>
-                <CalculationPostForm
-                    initialData={calculationData}
-                    isWater={isWater}
-                    onSubmit={() => {
-                        setModal(false);
-                        fetchCalculations();
-                    }}
-                />
-            </Modal>
+            {/*<Modal visible={updateModal} setVisible={setUpdateModal}>*/}
+            {/*    <CalculationUpdateForm*/}
+            {/*        initialData={calculationData}*/}
+            {/*        isWater={isWater}*/}
+            {/*        onSubmit={() => {*/}
+            {/*            setUpdateModal(false);*/}
+            {/*            fetchCalculations();*/}
+            {/*        }}*/}
+            {/*        objects={objects}*/}
+            {/*        pollutants={pollutants}*/}
+            {/*    />*/}
+            {/*</Modal>*/}
+            {/*<Modal visible={modal} setVisible={setModal}>*/}
+            {/*    <CalculationPostForm*/}
+            {/*        initialData={calculationData}*/}
+            {/*        isWater={isWater}*/}
+            {/*        onSubmit={() => {*/}
+            {/*            setModal(false);*/}
+            {/*            fetchCalculations();*/}
+            {/*        }}*/}
+            {/*        objects={objects}*/}
+            {/*        pollutants={pollutants}*/}
+            {/*    />*/}
+            {/*</Modal>*/}
         </div>
     );
 };
