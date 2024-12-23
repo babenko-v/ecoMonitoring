@@ -5,6 +5,9 @@ import CalculationsList from "./Pages/Calculations/CalculationsList";
 import PollutantsList from "./Pages/Pollutions/PollutantsList";
 import Navbar from "./Components/UI/Nav/Navbar";
 import Main from "./Pages/Main/Main";
+import RadioactiveWasteList from "./Pages/RadioactiveWaste/RadioactiveWasteList";
+import TemplateFactory from "bootstrap/js/src/util/template-factory";
+import TemporaryPlaceList from "./Pages/TemporaryPlace/TemporaryPlaceList";
 
 function App() {
     return (
@@ -15,6 +18,8 @@ function App() {
                 <Route path="/objects" element={<ObjectsList />} />
                 <Route path="/calculations" element={<CalculationsList />} />
                 <Route path="/pollutants" element={<PollutantsList />} />
+                <Route path="/radioactive_waste" element={<RadioactiveWasteList />} />
+                <Route path="/temporary_place" element={<TemporaryPlaceList />} />
             </Routes>
         </BrowserRouter>
     );

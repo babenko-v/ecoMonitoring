@@ -1,0 +1,31 @@
+.form__container {
+    display: flex;
+    gap: 20px;
+}
+
+.form__column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form__footer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.container{
+    width: 1400px;
+}
+.checkbox__col{
+    display: flex;
+    flex-direction: column;
+}
+.checkbox__row{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 50px;
+}

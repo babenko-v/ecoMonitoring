@@ -31,6 +31,18 @@ const Navbar = ({ classNames }) => {
                 >
                     Розрахунки
                 </div>
+                <div
+                    className={`${cl.item} ${isActive('/radioactive_waste') ? cl.active : ''}`}
+                    onClick={() => navigate('/radioactive_waste')}
+                >
+                    Радіоактивні відходи
+                </div>
+                <div
+                    className={`${cl.item} ${isActive('/temporary_place') ? cl.active : ''}`}
+                    onClick={() => navigate('/temporary_place')}
+                >
+                    Тимчасове місце
+                </div>
             </div>
         </div>
     );
