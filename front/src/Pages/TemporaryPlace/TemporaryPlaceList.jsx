@@ -94,7 +94,7 @@ const TemporaryPlaceList = () => {
                             <td>{place.v}</td>
                             <td>{place.t}</td>
                             <td>{place.total_tax.toFixed(2)}</td>
-                            <td>
+                            <td className="actions">
                                 <button
                                     onClick={() => {
                                         setEditingPlace(place);
