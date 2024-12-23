@@ -7,7 +7,9 @@ const PollutantPostForm = ({ onSubmit }) => {
         name: "",
         dangerous_emissions: "",
         enormity_mass_flow: "",
-        permissible_emissions: ""
+        permissible_emissions: "",
+        type_of_pollutant: "",
+        tax_rate: ""
     });
 
     const handleChange = (e) => {
@@ -61,6 +63,25 @@ const PollutantPostForm = ({ onSubmit }) => {
                 onChange={handleChange}
                 placeholder="Величина масової витрати"
             />
+            <div>Податок забруднювача</div>
+            <CustomInput
+                type="number"
+                name="tax_rate"
+                value={pollutant.tax_rate}
+                onChange={handleChange}
+                placeholder="Податок забруднювача"
+            />
+            <div>Тип</div>
+            <select
+                name="type_of_pollutant"
+                value={pollutant.type_of_pollutant}
+                onChange={handleChange}
+                className="form-select" aria-label="Default select example"
+            >
+                <option value="">Оберіть тип</option>
+                <option value="water">Вода</option>
+                <option value="air">Повітря</option>
+            </select>
             <div className="button-container">
                 <button type="button" className="btn btn-success m-2" onClick={handleSubmit}>
                     Зберегти
