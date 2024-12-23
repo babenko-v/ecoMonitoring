@@ -61,6 +61,12 @@ html, body {
 .little-wider{
     width: 9%;
 }
+.actions{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
 .loader-container{
     display: flex;
     align-items: center;
