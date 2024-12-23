@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import Modal from "../../Components/UI/Modal/Modal";
 import CalculationPostForm from "../../Components/Calculatioons/PostForm/CalculationPostForm";
@@ -12,23 +12,31 @@ const CalculationsList = () => {
     const [loading, setLoading] = useState(true);
     const [modal, setModal] = useState(false);
     const [updateModal, setUpdateModal] = useState(false);
-    const [editingCalculation, setEditingCalculation] = useState(null);
+    const [calculationData, setCalculationData] = useState({
+        ratio_water: "1",
+        company_id: '',
+        pollutant_id: '',
+        date: '',
+        total_emissions: '',
+        calculation_method: "false",
+    });
+
     const [isWater, setIsWater] = useState(false);
     const filterOptions =
         [
-            {value : 'company', name : 'Компанія'},
-            {value : 'pollutant', name : 'Забруднюючі речовини'},
-            {value : 'total_emissions', name : 'Загальний обсяг викидів'},
-            {value : 'date', name : 'Дата'},
+            {value: 'company_id', name: 'Компанія'},
+            {value: 'pollutant_id', name: 'Забруднюючі речовини'},
+            {value: 'total_emissions', name: 'Загальний обсяг викидів'},
+            {value: 'date', name: 'Дата'},
         ];
-    const sortOptions =  [
-        {value : 'company', name : 'Компанія'},
-        {value : 'pollutant', name : 'Забруднюючі речовини'},
-        {value : 'total_emissions', name : 'Загальний обсяг викидів'},
-        {value : 'date', name : 'Дата'},
+    const sortOptions = [
+        {value: 'company_id', name: 'Компанія'},
+        {value: 'pollutant_id', name: 'Забруднюючі речовини'},
+        {value: 'total_emissions', name: 'Загальний обсяг викидів'},
+        {value: 'date', name: 'Дата'},
     ];
 
-    const fetchCalculations = async ({ filterBy = '', filterValue = '', sortBy = '', sortOrder = '' } = {}) => {
+    const fetchCalculations = async ({filterBy = '', filterValue = '', sortBy = '', sortOrder = ''} = {}) => {
         const queryParams = new URLSearchParams();
 
         if (filterBy && filterValue) {
@@ -40,8 +48,13 @@ const CalculationsList = () => {
         }
         try {
             setLoading(true)
-            const res = await axios.get(`/calculations/?${queryParams.toString()}`);
-            setCalculations(res.data)
+            if (isWater) {
+                const res = await axios.get(`/calculations_water/?${queryParams.toString()}`);
+                setCalculations(res.data)
+            } else {
+                const res = await axios.get(`/calculations_air/?${queryParams.toString()}`);
+                setCalculations(res.data)
+            }
         } catch (err) {
             console.error(err);
         } finally {
@@ -60,7 +73,8 @@ const CalculationsList = () => {
 
     const handleChange = (e) => {
         const {name, value} = e.target;
-        setCalculations((prevState) => ({
+        console.log(value)
+        setCalculationData((prevState) => ({
             ...prevState,
             [name]: value
         }));
@@ -68,7 +82,7 @@ const CalculationsList = () => {
 
     useEffect(() => {
         fetchCalculations();
-    }, []);
+    }, [isWater]);
 
     return (
         <div className="container">
@@ -81,45 +95,24 @@ const CalculationsList = () => {
             <div className="buttons-center">
                 <button
                     type="button"
-                    className={`btn-lg button_blue ${!isWater ? "selected_button" : ""}`}
+                    className={`btn-lg ${!isWater ? "button_outline" : "button_filled"}`}
                     onClick={() => setIsWater(false)}
                 >
                     Повітря
                 </button>
                 <button
                     type="button"
-                    className={`btn-lg button_blue ${isWater ? "selected_button" : ""}`}
+                    className={`btn-lg ${isWater ? "button_outline" : "button_filled"}`}
                     onClick={() => setIsWater(true)}
                 >
                     Вода
                 </button>
             </div>
 
-            {isWater
-            ? <label className="">
-                    <div className="">
-                        <input
-                            type="checkbox"
-                            name="calculations"
-                            checked={radioactiveWaste.extra_value === 1}
-                            onChange={handleChange}
-                        />
-                        <div>Так</div>
-                    </div>
-                    <div className="">
-                        <input
-                            type="checkbox"
-                            name="calculations"
-                            checked={calculations.extra_value === 1.5}
-                            onChange={handleChange}
-                        />
-                        <div>Ні</div>
-                    </div>
-                </label>
-
-            :<select
-                    name="type_of_pollutant"
-                    value={calculations.calculation_method}
+            {!isWater &&
+                <select
+                    name="calculation_method"
+                    value={calculationData.calculation_method}
                     onChange={handleChange}
                     className="form-select" aria-label="Default select example"
                 >
@@ -151,6 +144,7 @@ const CalculationsList = () => {
                     <th>Забруднююча речовина</th>
                     <th>Дата</th>
                     <th>Загальний обсяг викидів</th>
+                    <th>Загальний податок</th>
                     <th>Дії</th>
                 </tr>
                 </thead>
@@ -160,14 +154,15 @@ const CalculationsList = () => {
                         <tr key={calc.id}>
                             <th scope="row">{index + 1}</th>
                             <td>{calc.id}</td>
-                            <td>{calc.company}</td>
-                            <td>{calc.pollutant}</td>
+                            <td>{calc.company.name}</td>
+                            <td>{calc.pollutant.name}</td>
                             <td>{calc.date}</td>
                             <td>{calc.total_emissions}</td>
+                            <td>{calc.total_tax}</td>
                             <td>
                                 <button
                                     onClick={() => {
-                                        setEditingCalculation(calc);
+                                        setCalculationData({...calculationData, ...calc});
                                         setUpdateModal(true);
                                     }}
                                     className="btn btn-warning btn-sm m-2"
@@ -194,18 +189,23 @@ const CalculationsList = () => {
             }
             <Modal visible={updateModal} setVisible={setUpdateModal}>
                 <CalculationUpdateForm
-                    initialData={editingCalculation}
+                    initialData={calculationData}
+                    isWater={isWater}
                     onSubmit={() => {
-                        setModal(false);
+                        setUpdateModal(false);
                         fetchCalculations();
                     }}
                 />
             </Modal>
             <Modal visible={modal} setVisible={setModal}>
-                <CalculationPostForm onSubmit={() => {
-                    setModal(false);
-                    fetchCalculations();
-                }} />
+                <CalculationPostForm
+                    initialData={calculationData}
+                    isWater={isWater}
+                    onSubmit={() => {
+                        setModal(false);
+                        fetchCalculations();
+                    }}
+                />
             </Modal>
         </div>
     );
