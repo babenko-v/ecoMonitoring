@@ -1,7 +1,20 @@
 from rest_framework import serializers
 from .models import Radioactive_waste
+from objects.models import Objects
+
+
+class CompanySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Objects
+        fields = ['id', 'name', 'address']
 
 class RadioactiveSerializer(serializers.ModelSerializer):
+    company = CompanySerializer(read_only=True)
+    company_id = serializers.PrimaryKeyRelatedField(
+        queryset=Objects.objects.all(),
+        source='company',
+        write_only=True
+    )
     extra_value = serializers.BooleanField(write_only=True, required=False, default=False)
 
     class Meta:
