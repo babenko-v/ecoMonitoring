@@ -50,10 +50,10 @@ const CalculationsList = () => {
             setLoading(true)
             if (isWater) {
                 const res = await axios.get(`/calculations_water/?${queryParams.toString()}`);
-                setCalculations(res.data)
+                setCalculations(res.data.calculations)
             } else {
                 const res = await axios.get(`/calculations_air/?${queryParams.toString()}`);
-                setCalculations(res.data)
+                setCalculations(res.data.calculations)
             }
         } catch (err) {
             console.error(err);
