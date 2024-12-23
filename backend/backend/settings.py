@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'radio_creation',
     'temporary_place',
     'calculation',
+    'risk_health',
 
     "rest_framework",
     'corsheaders',
