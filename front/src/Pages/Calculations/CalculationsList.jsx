@@ -12,6 +12,7 @@ const CalculationsList = () => {
     const [modal, setModal] = useState(false);
     const [updateModal, setUpdateModal] = useState(false);
     const [editingCalculation, setEditingCalculation] = useState(null);
+    const [isWater, setIsWater] = useState(false);
     const filterOptions =
         [
             {value : 'company', name : 'Компанія'},
@@ -67,6 +68,37 @@ const CalculationsList = () => {
                 filterOptions={filterOptions}
                 sortOptions={sortOptions}
             />
+
+
+            <div className="buttons-center">
+                <button
+                    type="button"
+                    className={`btn-lg button_blue ${!isWater ? "selected_button" : ""}`}
+                    onClick={() => setIsWater(false)}
+                >
+                    Повітря
+                </button>
+                <button
+                    type="button"
+                    className={`btn-lg button_blue ${isWater ? "selected_button" : ""}`}
+                    onClick={() => setIsWater(true)}
+                >
+                    Вода
+                </button>
+            </div>
+
+            <div className="buttons-center">
+                <button
+                    type="button"
+                    className="btn btn-primary m-2"
+                    onClick={() => {
+                        setModal(true);
+                    }}
+                >
+                    Додати розрахунок
+                </button>
+            </div>
+
             <table className="table">
                 <thead>
                 <tr className="dark">
@@ -117,17 +149,17 @@ const CalculationsList = () => {
                     <Loader/>
                 </div>
             }
-            <div className="button-container">
-                <button
-                    type="button"
-                    className="btn btn-primary m-2"
-                    onClick={() => {
-                        setModal(true);
-                    }}
-                >
-                    Додати розрахунок
-                </button>
-            </div>
+            {/*<div className="button-container">*/}
+            {/*    <button*/}
+            {/*        type="button"*/}
+            {/*        className="btn btn-primary m-2"*/}
+            {/*        onClick={() => {*/}
+            {/*            setModal(true);*/}
+            {/*        }}*/}
+            {/*    >*/}
+            {/*        Додати розрахунок*/}
+            {/*    </button>*/}
+            {/*</div>*/}
             <Modal visible={updateModal} setVisible={setUpdateModal}>
                 <CalculationUpdateForm
                     initialData={editingCalculation}

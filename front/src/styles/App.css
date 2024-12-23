@@ -75,3 +75,28 @@ html, body {
 .dark-border{
     border: 2px solid #065b06;
 }
+.buttons-center{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.button_blue{
+    background-color: #e4edfd;
+    border: 2px solid #50439f;
+    color: #50439f;
+    padding: 10px 20px;
+    border-radius: 12px;
+    width: 120px;
+    font-size: 20px;
+    &:hover{
+        background-color: #50439f;
+        color: white;
+    }
+}
+.selected_button{
+    background-color: #8472e8;
+    border: 2px solid #8472e8;
+    color: white;
+}
