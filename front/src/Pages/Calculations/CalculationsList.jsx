@@ -5,6 +5,7 @@ import CalculationPostForm from "../../Components/Calculatioons/PostForm/Calcula
 import CalculationUpdateForm from "../../Components/Calculatioons/UpdateForm/CalculationUpdateForm";
 import Filter from "../../Components/Filter/Filter";
 import Loader from "../../Components/UI/Loader/Loader";
+import cl from "../../Components/Form.module.css";
 
 const CalculationsList = () => {
     const [calculations, setCalculations] = useState([]);
@@ -57,6 +58,14 @@ const CalculationsList = () => {
         }
     };
 
+    const handleChange = (e) => {
+        const {name, value} = e.target;
+        setCalculations((prevState) => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+
     useEffect(() => {
         fetchCalculations();
     }, []);
@@ -68,7 +77,6 @@ const CalculationsList = () => {
                 filterOptions={filterOptions}
                 sortOptions={sortOptions}
             />
-
 
             <div className="buttons-center">
                 <button
@@ -86,6 +94,41 @@ const CalculationsList = () => {
                     Вода
                 </button>
             </div>
+
+            {isWater
+            ? <label className="">
+                    <div className="">
+                        <input
+                            type="checkbox"
+                            name="calculations"
+                            checked={radioactiveWaste.extra_value === 1}
+                            onChange={handleChange}
+                        />
+                        <div>Так</div>
+                    </div>
+                    <div className="">
+                        <input
+                            type="checkbox"
+                            name="calculations"
+                            checked={calculations.extra_value === 1.5}
+                            onChange={handleChange}
+                        />
+                        <div>Ні</div>
+                    </div>
+                </label>
+
+            :<select
+                    name="type_of_pollutant"
+                    value={calculations.calculation_method}
+                    onChange={handleChange}
+                    className="form-select" aria-label="Default select example"
+                >
+                    <option value="">Оберіть спосіб розрахування</option>
+                    <option value="true">За розміщення відходів</option>
+                    <option value="false">За викиди в атмосферне повітря</option>
+                </select>
+
+            }
 
             <div className="buttons-center">
                 <button
@@ -149,17 +192,6 @@ const CalculationsList = () => {
                     <Loader/>
                 </div>
             }
-            {/*<div className="button-container">*/}
-            {/*    <button*/}
-            {/*        type="button"*/}
-            {/*        className="btn btn-primary m-2"*/}
-            {/*        onClick={() => {*/}
-            {/*            setModal(true);*/}
-            {/*        }}*/}
-            {/*    >*/}
-            {/*        Додати розрахунок*/}
-            {/*    </button>*/}
-            {/*</div>*/}
             <Modal visible={updateModal} setVisible={setUpdateModal}>
                 <CalculationUpdateForm
                     initialData={editingCalculation}
