@@ -30,7 +30,7 @@ class CalculationsWaterViewSet(ModelViewSet):
 
 
 # class CalculationsAirViewSet(ModelViewSet):
-#     queryset = Calculations.objects.all().exclude(pollutant__type_of_pollutant="air")
+#     queryset = Calculations.objects.all().exclude(pollutant__type_of_pollutant="water")
 #     serializer_class = CalculationsSerializer
 #     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
 #
