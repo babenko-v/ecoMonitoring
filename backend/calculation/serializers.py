@@ -1,7 +1,34 @@
 from rest_framework import serializers
 from .models import Calculations
+from objects.models import Objects
+from pollutants.models import Pollutants
+
+
+class CompanySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Objects
+        fields = ['id', 'name', 'address']
+
+
+class Pollutanterializer(serializers.ModelSerializer):
+    class Meta:
+        model = Pollutants
+        fields = ['id', 'name', 'tax_rate']
+
 
 class CalculationWaterSerializer(serializers.ModelSerializer):
+    company = CompanySerializer(read_only=True)
+    company_id = serializers.PrimaryKeyRelatedField(
+        queryset=Objects.objects.all(),
+        source='company',
+        write_only=True
+    )
+    pollutant = Pollutanterializer(read_only=True)
+    pollutant_id = serializers.PrimaryKeyRelatedField(
+        queryset=Pollutants.objects.all().exclude(type_of_pollutant="air"),
+        source='pollutant',
+        write_only=True
+    )
     ratio_water = serializers.FloatField(write_only=True, required=False, default=False)
 
     class Meta:
@@ -35,6 +62,20 @@ class CalculationWaterSerializer(serializers.ModelSerializer):
 
 
 class CalculationAirSerializer(serializers.ModelSerializer):
+    company = CompanySerializer(read_only=True)
+    company_id = serializers.PrimaryKeyRelatedField(
+        queryset=Objects.objects.all(),
+        source='company',
+        write_only=True
+    )
+
+    pollutant = Pollutanterializer(read_only=True)
+    pollutant_id = serializers.PrimaryKeyRelatedField(
+        queryset=Pollutants.objects.all().exclude(type_of_pollutant="water"),
+        source='pollutant',
+        write_only=True
+    )
+
     calculation_method = serializers.BooleanField(write_only=True, default=False)
     k1 = serializers.IntegerField(write_only=True, required=False, default=1)
     k2 = serializers.IntegerField(write_only=True, required=False, default=1)
