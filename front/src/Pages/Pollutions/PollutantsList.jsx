@@ -76,6 +76,8 @@ const PollutantsList = () => {
                     <th>Небезпечні викиди</th>
                     <th>Допустимі викиди мг/м^3</th>
                     <th>Величина массової витрати г/год</th>
+                    <th>Податок забруднювача</th>
+                    <th>Тип</th>
                     <th>Дії</th>
                 </tr>
                 </thead>
@@ -89,6 +91,8 @@ const PollutantsList = () => {
                             <td>{pollutant.dangerous_emissions}</td>
                             <td>{pollutant.permissible_emissions}</td>
                             <td>{pollutant.enormity_mass_flow}</td>
+                            <td>{pollutant.tax_rate}</td>
+                            <td>{pollutant.type_of_pollutant}</td>
                             <td>
                                 <button
                                     onClick={() => {
