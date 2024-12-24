@@ -81,7 +81,6 @@ const CalculationsList = () => {
 
     const handleChange = (e) => {
         const {name, value} = e.target;
-        console.log(value)
         setCalculationData((prevState) => ({
             ...prevState,
             [name]: value
@@ -195,30 +194,30 @@ const CalculationsList = () => {
                     <Loader/>
                 </div>
             }
-            {/*<Modal visible={updateModal} setVisible={setUpdateModal}>*/}
-            {/*    <CalculationUpdateForm*/}
-            {/*        initialData={calculationData}*/}
-            {/*        isWater={isWater}*/}
-            {/*        onSubmit={() => {*/}
-            {/*            setUpdateModal(false);*/}
-            {/*            fetchCalculations();*/}
-            {/*        }}*/}
-            {/*        objects={objects}*/}
-            {/*        pollutants={pollutants}*/}
-            {/*    />*/}
-            {/*</Modal>*/}
-            {/*<Modal visible={modal} setVisible={setModal}>*/}
-            {/*    <CalculationPostForm*/}
-            {/*        initialData={calculationData}*/}
-            {/*        isWater={isWater}*/}
-            {/*        onSubmit={() => {*/}
-            {/*            setModal(false);*/}
-            {/*            fetchCalculations();*/}
-            {/*        }}*/}
-            {/*        objects={objects}*/}
-            {/*        pollutants={pollutants}*/}
-            {/*    />*/}
-            {/*</Modal>*/}
+            <Modal visible={updateModal} setVisible={setUpdateModal}>
+                <CalculationUpdateForm
+                    initialData={calculationData}
+                    isWater={isWater}
+                    onSubmit={() => {
+                        setUpdateModal(false);
+                        fetchCalculations();
+                    }}
+                    objects={objects}
+                    pollutants={pollutants}
+                />
+            </Modal>
+            <Modal visible={modal} setVisible={setModal}>
+                <CalculationPostForm
+                    initialData={calculationData}
+                    isWater={isWater}
+                    onSubmit={() => {
+                        setModal(false);
+                        fetchCalculations();
+                    }}
+                    objects={objects}
+                    pollutants={pollutants}
+                />
+            </Modal>
         </div>
     );
 };

@@ -12,6 +12,7 @@ const TemporaryPlaceList = () => {
     const [updateModal, setUpdateModal] = useState(false);
     const [loading, setLoading] = useState(true);
     const [editingPlace, setEditingPlace] = useState(null);
+    const [objects, setObjects] = useState()
 
     const filterOptions = [
         { value: "company", name: "Компанія" },
@@ -42,7 +43,9 @@ const TemporaryPlaceList = () => {
         try {
             setLoading(true);
             const res = await axios.get(`/temporary_place/?${queryParams.toString()}`);
-            setTemporaryPlaces(res.data);
+            console.log(res.data)
+            setTemporaryPlaces(res.data.temp_place);
+            setObjects(res.data.objects);
         } catch (err) {
             console.error(err);
         } finally {
@@ -89,7 +92,7 @@ const TemporaryPlaceList = () => {
                         <tr key={place.id}>
                             <th scope="row">{index + 1}</th>
                             <td>{place.id}</td>
-                            <td>{place.company}</td>
+                            <td>{place.company.name}</td>
                             <td>{place.n}</td>
                             <td>{place.v}</td>
                             <td>{place.t}</td>
@@ -135,6 +138,7 @@ const TemporaryPlaceList = () => {
             </div>
             <Modal visible={updateModal} setVisible={setUpdateModal}>
                 <TemporaryPlaceUpdateForm
+                    objects={objects}
                     initialData={editingPlace}
                     onSubmit={() => {
                         setUpdateModal(false);
@@ -144,6 +148,7 @@ const TemporaryPlaceList = () => {
             </Modal>
             <Modal visible={modal} setVisible={setModal}>
                 <TemporaryPlacePostForm
+                    objects={objects}
                     onSubmit={() => {
                         setModal(false);
                         fetchTemporaryPlaces();

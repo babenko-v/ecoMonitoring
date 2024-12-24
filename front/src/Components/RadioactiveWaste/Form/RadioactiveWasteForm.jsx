@@ -5,21 +5,24 @@ import CustomInput from "../../UI/Input/CustomInput";
 const RadioactiveWasteForm = ({radioactiveWaste, handleChange, handleSubmit, objects}) => {
     return (
         <div className={cl.container}>
-            <div>Назва підприємства</div>
-
-            <select
-                name="company"
-                value={radioactiveWaste.company}
-                onChange={handleChange}
-                className="form-select" aria-label="Default select example"
-            >
-                <option value="">Оберіть компанію</option>
-                {objects.map((obj) => (
-                    <option key={obj.id} value={obj.id}>
-                        {obj.name}
-                    </option>
-                ))}
-            </select>
+            {objects &&
+                <div>
+                    <div>Назва підприємства</div>
+                    <select
+                        name="company_id"
+                        value={radioactiveWaste.company_id}
+                        onChange={handleChange}
+                        className="form-select" aria-label="Default select example"
+                    >
+                        <option value="">Оберіть компанію</option>
+                        {objects.map((obj) => (
+                            <option key={obj.id} value={obj.id}>
+                                {obj.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            }
             <div className={cl.form__container}>
                 <div className={cl.form__column}>
                     <div>Фактичний обсяг електричної енергії (кВт·год)</div>

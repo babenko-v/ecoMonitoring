@@ -4,7 +4,7 @@ import CustomInput from "../../UI/Input/CustomInput";
 import cl from "../../Form.module.css";
 import TemporaryPlaceForm from "../Form/TemporaryPlaceForm";
 
-const TemporaryPlaceUpdateForm = ({ onSubmit, initialData }) => {
+const TemporaryPlaceUpdateForm = ({ onSubmit, initialData, objects }) => {
     const [temporaryPlace, setTemporaryPlace] = useState({
         n: "",
         v: "",
@@ -15,28 +15,10 @@ const TemporaryPlaceUpdateForm = ({ onSubmit, initialData }) => {
 
     useEffect(() => {
         if (initialData){
-            setTemporaryPlace({...initialData})
+            setTemporaryPlace({...initialData, company_id: initialData.company.id})
         }
     }, [initialData]);
 
-    const [objects, setObjects] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    const fetchObjects = async () => {
-        try {
-            setLoading(true);
-            const res = await axios.get(`/objects/`);
-            setObjects(res.data);
-        } catch (err) {
-            console.error(err);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        fetchObjects();
-    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
