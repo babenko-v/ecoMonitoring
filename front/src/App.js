@@ -8,6 +8,7 @@ import Main from "./Pages/Main/Main";
 import RadioactiveWasteList from "./Pages/RadioactiveWaste/RadioactiveWasteList";
 import TemplateFactory from "bootstrap/js/src/util/template-factory";
 import TemporaryPlaceList from "./Pages/TemporaryPlace/TemporaryPlaceList";
+import RiskHealthList from "./Pages/RiskHealth/RiskHealthList";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/pollutants" element={<PollutantsList />} />
                 <Route path="/radioactive_waste" element={<RadioactiveWasteList />} />
                 <Route path="/temporary_place" element={<TemporaryPlaceList />} />
+                <Route path="/risk_health" element={<RiskHealthList />} />
             </Routes>
         </BrowserRouter>
     );
