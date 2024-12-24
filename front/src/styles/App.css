@@ -88,7 +88,7 @@ html, body {
     gap: 20px;
     margin-bottom: 20px;
 }
-.button_blue{
+.button_outline{
     background-color: #e4edfd;
     border: 2px solid #50439f;
     color: #50439f;
@@ -100,9 +100,35 @@ html, body {
         background-color: #50439f;
         color: white;
     }
+
 }
-.selected_button{
+.button_filled{
     background-color: #8472e8;
     border: 2px solid #8472e8;
     color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    width: 120px;
+    font-size: 20px;
+    &:hover{
+        background-color: #50439f;
+        color: white;
+    }
+}
+
+.checkbox-col{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+.checkbox-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 20px;
+}
+.color-green{
+    color: #1a811a;
+    font-weight: bold;
 }

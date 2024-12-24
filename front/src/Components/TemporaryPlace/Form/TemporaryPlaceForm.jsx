@@ -1,31 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import CustomInput from "../../UI/Input/CustomInput";
 import cl from "../../Form.module.css";
 
-const TemporaryPlaceForm = ({ temporaryPlace, handleChange, handleSubmit, objects, handleCheckboxChange }) => {
+const TemporaryPlaceForm = ({temporaryPlace, handleChange, handleSubmit, objects, handleCheckboxChange}) => {
 
 
     return (
         <div className={cl.container}>
-            <div className="mb-2">
-                <div>Назва підприємства</div>
-                <select
-                    name="company"
-                    value={temporaryPlace.company}
-                    onChange={handleChange}
-                    className="form-select"
-                    aria-label="Default select example"
-                >
-                    <option value="">Оберіть компанію</option>
-                    {objects.map((obj) => (
-                        <option key={obj.id} value={obj.id}>
-                            {obj.name}
-                        </option>
-                    ))}
-                </select>
-            </div>
-
+            {objects &&
+                <div className="mb-2">
+                    <div>Назва підприємства</div>
+                    <select
+                        name="company_id"
+                        value={temporaryPlace.company_id}
+                        onChange={handleChange}
+                        className="form-select"
+                        aria-label="Default select example"
+                    >
+                        <option value="">Оберіть компанію</option>
+                        {objects.map((obj) => (
+                            <option key={obj.id} value={obj.id}>
+                                {obj.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            }
             <div className="mb-2">
                 <div>Оберіть категорію відходів:</div>
                 <div>
@@ -73,7 +74,8 @@ const TemporaryPlaceForm = ({ temporaryPlace, handleChange, handleSubmit, object
                             checked={temporaryPlace.n === "4216.92"}
                             onChange={handleCheckboxChange}
                         />
-                        Середньоактивні та низькоактивні відходи, представлені у вигляді джерел іонізуючого випромінювання
+                        Середньоактивні та низькоактивні відходи, представлені у вигляді джерел іонізуючого
+                        випромінювання
                     </label>
                 </div>
             </div>

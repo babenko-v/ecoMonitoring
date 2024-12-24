@@ -5,6 +5,7 @@ import RadioactiveWasteUpdateForm from "../../Components/RadioactiveWaste/Update
 import RadioactiveWastePostForm from "../../Components/RadioactiveWaste/PostForm/RadioactiveWastePostForm";
 import Filter from "../../Components/Filter/Filter";
 import Loader from "../../Components/UI/Loader/Loader";
+import objectsList from "../Objects/ObjectsList";
 
 const RadioactiveWasteList = () => {
     const [radioactiveWastes, setRadioactiveWastes] = useState([]);
@@ -12,6 +13,7 @@ const RadioactiveWasteList = () => {
     const [updateModal, setUpdateModal] = useState(false);
     const [loading, setLoading] = useState(true);
     const [editingWaste, setEditingWaste] = useState(null);
+    const [objects, setObjects] = useState()
 
     const filterOptions = [
         { value: "company", name: "Компанія" },
@@ -54,7 +56,8 @@ const RadioactiveWasteList = () => {
         try {
             setLoading(true);
             const res = await axios.get(`/radioactive_waste/?${queryParams.toString()}`);
-            setRadioactiveWastes(res.data);
+            setRadioactiveWastes(res.data.radioactive_waste);
+            setObjects(res.data.objects);
         } catch (err) {
             console.error(err);
         } finally {
@@ -107,7 +110,7 @@ const RadioactiveWasteList = () => {
                         <tr key={waste.id}>
                             <th scope="row">{index + 1}</th>
                             <td>{waste.id}</td>
-                            <td>{waste.company}</td>
+                            <td>{waste.company.name}</td>
                             <td>{waste.on_electricity}</td>
                             <td>{waste.c1ns}</td>
                             <td>{waste.c2ns}</td>
@@ -118,7 +121,7 @@ const RadioactiveWasteList = () => {
                             <td>{waste.v1v}</td>
                             <td>{waste.v2v}</td>
                             <td>{waste.total_tax.toFixed(2)}</td>
-                            <td>
+                            <td className="actions">
                                 <button
                                     onClick={() => {
                                         setEditingWaste(waste);
@@ -160,6 +163,7 @@ const RadioactiveWasteList = () => {
             <Modal visible={updateModal} setVisible={setUpdateModal}>
                 <RadioactiveWasteUpdateForm
                     initialData={editingWaste}
+                    objects={objects}
                     onSubmit={() => {
                         setUpdateModal(false);
                         fetchRadioactiveWastes();
@@ -168,6 +172,7 @@ const RadioactiveWasteList = () => {
             </Modal>
             <Modal visible={modal} setVisible={setModal}>
                 <RadioactiveWastePostForm
+                    objects={objects}
                     onSubmit={() => {
                         setModal(false);
                         fetchRadioactiveWastes();
