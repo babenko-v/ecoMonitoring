@@ -132,3 +132,18 @@ html, body {
     color: #1a811a;
     font-weight: bold;
 }
+
+@media (max-width: 1400px) {
+    body {
+        font-size: 14px;
+    }
+    .table {
+        font-size: 12px;
+    }
+    .little-wider{
+        width: 12%;
+    }
+    .wider{
+        width: 11%;
+    }
+}

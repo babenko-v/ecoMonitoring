@@ -2,9 +2,6 @@ import React, {useEffect} from 'react';
 import CustomInput from "../../UI/Input/CustomInput";
 
 const CalculationForm = ({calculation, handleChange, handleSubmit, objects, pollutants, isWater}) => {
-    useEffect(() => {
-        console.log(calculation)
-    }, [calculation]);
     return (
         <div>
             {calculation.calculation_method == "true" && !isWater &&
