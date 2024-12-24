@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'temporary_place',
     'calculation',
     'risk_health',
+    'compensation_damages',
 
     "rest_framework",
     'corsheaders',
