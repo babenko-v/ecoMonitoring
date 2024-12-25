@@ -50,6 +50,12 @@ const Navbar = ({ classNames }) => {
                     >
                         Ризик здоровью
                     </div>
+                    <div
+                        className={`${cl.item} ${isActive('/compensation') ? cl.active : ''}`}
+                        onClick={() => navigate('/compensation')}
+                    >
+                        Збитки
+                    </div>
                 </div>
             </div>
             <div className={cl.under__nav}>

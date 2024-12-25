@@ -99,13 +99,13 @@ const PollutantsList = () => {
                                         setEditingPollutant(pollutant);
                                         setUpdateModal(true);
                                     }}
-                                    className="btn btn-warning btn-sm m-2"
+                                    className="btn btn-warning btn-sm mb-1 mt-1"
                                 >
                                     Оновити
                                 </button>
                                 <button
                                     onClick={() => deletePollutant(pollutant.id)}
-                                    className="btn btn-danger btn-sm m-2"
+                                    className="btn btn-danger btn-sm mb-1 mt-1"
                                 >
                                     Видалити
                                 </button>

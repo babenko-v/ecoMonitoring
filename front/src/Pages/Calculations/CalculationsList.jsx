@@ -93,11 +93,6 @@ const CalculationsList = () => {
 
     return (
         <div className="container">
-            <Filter
-                fetch={fetchCalculations}
-                filterOptions={filterOptions}
-                sortOptions={sortOptions}
-            />
 
             <div className="buttons-center">
                 <button
@@ -115,6 +110,12 @@ const CalculationsList = () => {
                     Вода
                 </button>
             </div>
+
+            <Filter
+                fetch={fetchCalculations}
+                filterOptions={filterOptions}
+                sortOptions={sortOptions}
+            />
 
             {!isWater &&
                 <select
@@ -172,13 +173,13 @@ const CalculationsList = () => {
                                         setCalculationData({...calculationData, ...calc});
                                         setUpdateModal(true);
                                     }}
-                                    className="btn btn-warning btn-sm m-2"
+                                    className="btn btn-warning btn-sm mb-1 mt-1"
                                 >
                                     Оновити
                                 </button>
                                 <button
                                     onClick={() => deleteCalculation(calc.id)}
-                                    className="btn btn-danger btn-sm m-2"
+                                    className="btn btn-danger btn-sm mb-1 mt-1"
                                 >
                                     Видалити
                                 </button>
