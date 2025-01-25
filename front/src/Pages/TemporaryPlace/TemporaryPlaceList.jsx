@@ -68,6 +68,7 @@ const TemporaryPlaceList = () => {
 
     return (
         <div className="container">
+            <div className="title">Тимчасове місце</div>
             <Filter
                 fetch={fetchTemporaryPlaces}
                 filterOptions={filterOptions}
@@ -121,7 +122,7 @@ const TemporaryPlaceList = () => {
             </table>
             {loading && (
                 <div className="loader-container">
-                    <Loader />
+                    <Loader/>
                 </div>
             )}
             <div className="button-container">

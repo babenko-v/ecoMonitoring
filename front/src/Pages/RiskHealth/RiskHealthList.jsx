@@ -86,7 +86,8 @@ const RiskHealthList = () => {
 
     return (
         <div className="container">
-            <Filter fetch={fetchRiskHealth} filterOptions={filterOptions} sortOptions={sortOptions} />
+            <div className="title">Ризики здоровью</div>
+            <Filter fetch={fetchRiskHealth} filterOptions={filterOptions} sortOptions={sortOptions}/>
             <table className="table">
                 <thead>
                 <tr className="dark">
@@ -110,14 +111,14 @@ const RiskHealthList = () => {
                         <tr key={health.id}>
                             <th scope="row">{index + 1}</th>
                             <td>{health.id}</td>
-                            <td >{health.company.name}</td>
-                            <td >{health.pollutant.name}</td>
+                            <td>{health.company.name}</td>
+                            <td>{health.pollutant.name}</td>
                             <td>{health.concentration}</td>
                             <td>{health.sf}</td>
                             <td>{health.rfc}</td>
-                            <td style={{ backgroundColor: getHQColor(health.hq) }}>{health.hq.toFixed(7)}</td>
+                            <td style={{backgroundColor: getHQColor(health.hq)}}>{health.hq.toFixed(7)}</td>
                             <td>{health.ladd.toFixed(3)}</td>
-                            <td style={{ backgroundColor: getCRColor(health.cr) }}>{health.cr.toFixed(7)}</td>
+                            <td style={{backgroundColor: getCRColor(health.cr)}}>{health.cr.toFixed(7)}</td>
                             <td>{health.date}</td>
                             <td className="actions">
                                 <button
@@ -143,7 +144,7 @@ const RiskHealthList = () => {
             </table>
             {loading && (
                 <div className="loader-container">
-                    <Loader />
+                    <Loader/>
                 </div>
             )}
             <div className="button-container">

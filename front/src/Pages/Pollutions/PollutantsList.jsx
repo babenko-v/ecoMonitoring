@@ -62,6 +62,7 @@ const PollutantsList = () => {
 
     return (
         <div className="container">
+            <div className="title">Забруднюючі речовини</div>
             <Filter
                 fetch={fetchPollutants}
                 filterOptions={filterOptions}
@@ -146,7 +147,7 @@ const PollutantsList = () => {
                 <PollutantPostForm onSubmit={() => {
                     setModal(false);
                     fetchPollutants();
-                }} />
+                }}/>
             </Modal>
         </div>
     );

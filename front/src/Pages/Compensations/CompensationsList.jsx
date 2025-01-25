@@ -16,18 +16,18 @@ const CompensationsList = () => {
 
     return (
         <div className="container">
-
+            <div className="title">Збитки</div>
             <div className="buttons-center">
                 <button
                     type="button"
-                    className={`btn-lg ${!isWater ? "button_outline" : "button_filled"}`}
+                    className={`btn-lg ${!isWater ? "button" : "button__pressed"}`}
                     onClick={() => setIsWater(false)}
                 >
                     Повітря
                 </button>
                 <button
                     type="button"
-                    className={`btn-lg ${isWater ? "button_outline" : "button_filled"}`}
+                    className={`btn-lg ${isWater ? "button" : "button__pressed"}`}
                     onClick={() => setIsWater(true)}
                 >
                     Вода

@@ -140,7 +140,11 @@ const CompensationsWaterList = () => {
                     </tbody>
                 )}
             </table>
-            {loading && <Loader />}
+            {loading &&
+                <div className="loader-container">
+                    <Loader />
+                </div>
+            }
             <div className="button-container">
                 <button
                     type="button"

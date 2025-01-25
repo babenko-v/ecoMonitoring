@@ -65,6 +65,7 @@ const ObjectsList = () => {
 
     return (
         <div className="container">
+            <div className="title">Об'єкти</div>
             <Filter
                 fetch={fetchObjects}
                 filterOptions={filterOptions}
@@ -150,7 +151,7 @@ const ObjectsList = () => {
                 <ObjectPostForm onSubmit={() => {
                     setModal(false);
                     fetchObjects();
-                }} />
+                }}/>
             </Modal>
         </div>
     );

@@ -80,6 +80,7 @@ const RadioactiveWasteList = () => {
 
     return (
         <div className="container">
+            <div className="title">Радіоактивні відходи</div>
             <Filter
                 fetch={fetchRadioactiveWastes}
                 filterOptions={filterOptions}
@@ -145,7 +146,7 @@ const RadioactiveWasteList = () => {
             </table>
             {loading && (
                 <div className="loader-container">
-                    <Loader />
+                    <Loader/>
                 </div>
             )}
             <div className="button-container">

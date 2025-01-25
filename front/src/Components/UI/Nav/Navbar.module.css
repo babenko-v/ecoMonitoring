@@ -1,7 +1,7 @@
 .navbar{
     height: 60px;
     width: 100%;
-    background-color: #447011;
+    background-color: #016c01;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -14,7 +14,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 10px;
+    gap: 20px;
 }
 .main__links{
     display: flex;
@@ -24,8 +24,8 @@
 .item {
     display: flex;
     align-items: center;
-    font-size: 16px;
-    color: black;
+    font-size: 20px;
+    color: #fdfdfd;
     position: relative;
     cursor: pointer;
 }
@@ -46,7 +46,7 @@
 }
 
 .active {
-    color: #06be06;
+    color: #53fa53;
 }
 .under__nav{
     border-top: 1px solid black;

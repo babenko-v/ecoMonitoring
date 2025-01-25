@@ -10,9 +10,6 @@ const Navbar = ({ classNames }) => {
     return (
         <div>
             <div className={[cl.navbar, classNames].join(' ')}>
-                <div className={cl.main__links}>
-                    <div className={cl.main__item}>ЕкоМоніторинг</div>
-                </div>
                 <div className={cl.navbar__links}>
                     <div
                         className={`${cl.item} ${isActive('/objects') ? cl.active : ''}`}
@@ -58,9 +55,9 @@ const Navbar = ({ classNames }) => {
                     </div>
                 </div>
             </div>
-            <div className={cl.under__nav}>
-                Тіхонов О.С. Бабенко В.М. ТР-25
-            </div>
+            {/*<div className={cl.under__nav}>*/}
+            {/*    Тіхонов О.С. Бабенко В.М. ТР-25*/}
+            {/*</div>*/}
         </div>
     );
 };

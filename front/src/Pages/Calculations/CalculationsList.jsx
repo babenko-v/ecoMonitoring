@@ -93,18 +93,18 @@ const CalculationsList = () => {
 
     return (
         <div className="container">
-
+            <div className="title">Розрахнки</div>
             <div className="buttons-center">
                 <button
                     type="button"
-                    className={`btn-lg ${!isWater ? "button_outline" : "button_filled"}`}
+                    className={`btn-lg ${!isWater ? "button__pressed" : "button"}`}
                     onClick={() => setIsWater(false)}
                 >
                     Повітря
                 </button>
                 <button
                     type="button"
-                    className={`btn-lg ${isWater ? "button_outline" : "button_filled"}`}
+                    className={`btn-lg ${isWater ? "button__pressed" : "button"}`}
                     onClick={() => setIsWater(true)}
                 >
                     Вода
